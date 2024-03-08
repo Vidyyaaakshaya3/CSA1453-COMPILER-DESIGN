@@ -1,0 +1,25 @@
+%{
+#include <stdio.h>
+#include <string.h>
+
+int is_grammar = 1;
+%}
+
+%%
+[a-zA-Z]+ { is_grammar = 0; }
+. { }
+
+%%
+
+int yywrap() {
+    return 1;
+}
+
+int main() {
+    yylex();
+    if (is_grammar)
+        printf("The string is a valid grammar.\n");
+    else
+        printf("The string is not a valid grammar.\n");
+    return 0;
+}

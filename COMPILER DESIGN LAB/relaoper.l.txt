@@ -1,0 +1,18 @@
+%{
+#include<stdio.h>
+%}
+
+%%
+[0-9]+ {printf("number\n", yytext);}
+[a-zA-Z][a-zA-Z0-9]* {printf("word\n", yytext);}
+">"|"<"|">="|"<="|"!="|"==" {printf("relational operator\n", yytext);}
+%%
+int main()
+{
+printf("\n Enter the input :");	
+yylex();
+}
+int yywrap()
+{
+return 1;
+}
